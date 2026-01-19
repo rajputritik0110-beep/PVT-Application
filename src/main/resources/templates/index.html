@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>MUNNIC — Premium Handcrafted Products</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" />
+    <!-- Swiper CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <style>
+        :root {
+            --nav-h: 72px;
+            --text: #fff;
+            --accent1: #7c3aed;
+            --accent2: #06b6d4;
+            --border: rgba(255,255,255,0.2);
+            --radius: 16px;
+            --bg-gradient: linear-gradient(135deg, #1a1a1a, #2d2d2d);
+        }
+        body {
+            margin:0; font-family:Inter,sans-serif;
+            color:var(--text); padding-top:var(--nav-h);
+            background:var(--bg-gradient);
+            scroll-behavior:smooth;
+        }
+        nav {
+            position:fixed; top:0; left:0; right:0; height:var(--nav-h);
+            background:rgba(0,0,0,0.6); backdrop-filter:blur(12px);
+            border-bottom:1px solid var(--border); z-index:1000;
+        }
+        .nav-inner {
+            max-width:1200px; margin:0 auto; height:100%;
+            display:flex; align-items:center; justify-content:space-between;
+            padding:0 20px;
+        }
+        .brand {font-weight:800; font-size:20px; color:var(--accent2);}
+        .nav-links a {
+            color:#fff; text-decoration:none; margin:0 10px; font-weight:600; position:relative;
+            transition:.3s;
+        }
+        .nav-links a.active::after {
+            content:""; position:absolute; bottom:-6px; left:0; right:0;
+            height:3px; background:var(--accent2); border-radius:2px;
+        }
+        .nav-links a:hover {color:var(--accent2);}
+        .section {
+            padding:100px 20px; min-height:100vh;
+            display:flex; align-items:center; justify-content:center;
+            background-size:cover; background-position:center;
+            position:relative; text-align:center;
+        }
+        .overlay {
+            background:rgba(0,0,0,0.65); backdrop-filter:blur(12px);
+            border-radius:var(--radius); padding:60px; max-width:1000px; margin:auto;
+            min-height:400px;
+            box-shadow:0 10px 30px rgba(0,0,0,.6);
+            animation:fadeIn 1s ease;
+        }
+        h2, h3, p, li {
+            color:#fff;
+            text-shadow:0 2px 6px rgba(0,0,0,0.8);
+        }
+        h2 {margin-top:0; font-size:2.2rem; color:var(--accent2);}
+        .btn {
+            background: linear-gradient(45deg, var(--accent1), var(--accent2));
+            color: #fff; padding: 12px 28px; border-radius: 30px;
+            font-weight: 700; text-decoration:none; display:inline-block;
+            transition:0.3s;
+        }
+        .btn:hover {transform:scale(1.05); box-shadow:0 0 20px var(--accent2);}
+        .card {
+            background:rgba(0,0,0,0.6); border:1px solid var(--border); border-radius:var(--radius);
+            padding:30px; margin:30px; transition:.3s; box-shadow:0 6px 16px rgba(0,0,0,.4);
+        }
+        .card:hover {transform:translateY(-6px) scale(1.02); box-shadow:0 12px 24px rgba(0,0,0,.6);}
+        .timeline {position:relative; margin:40px auto; max-width:800px;}
+        .timeline::before {content:""; position:absolute; left:50%; top:0; bottom:0; width:4px; background:var(--accent2);}
+        .timeline-item {position:relative; width:50%; padding:20px;}
+        .timeline-item.left {left:0;}
+        .timeline-item.right {left:50%;}
+        .timeline-item::before {
+            content:""; position:absolute; top:20px; width:20px; height:20px;
+            border-radius:50%; background:var(--accent1); border:3px solid #fff;
+        }
+        .timeline-item.left::before {right:-10px;}
+        .timeline-item.right::before {left:-10px;}
+        footer {background:rgba(0,0,0,0.8); padding:20px; text-align:center; border-top:1px solid var(--border);}
+        @keyframes fadeIn {from{opacity:0; transform:translateY(20px);} to{opacity:1; transform:translateY(0);}}
+        /* Swiper custom styling */
+        .swiper {
+            width:100%;
+            height:400px;
+            margin-top:20px;
+            border-radius:var(--radius);
+            overflow:hidden;
+            box-shadow:0 8px 24px rgba(0,0,0,.6);
+        }
+        .swiper-slide img {
+            width:100%; height:100%; object-fit:contain; object-position: center;
+        }
+    </style>
+</head>
+<body>
+<nav>
+    <div class="nav-inner">
+        <!--        <div class="brand"><i class="fa-solid fa-hand-sparkles"></i> MUNNIC</div>-->
+        <div class="brand">
+            <!-- Logo image -->
+            <img src="/images/logo.jpg" alt="Munnic Logo" style="height:40px; vertical-align:middle; margin-right:8px;">
+            MUNNIC
+        </div>
+        <div class="nav-links" id="navLinks">
+            <a href="#home"><i class="fa-solid fa-house"></i> Home</a>
+            <a href="#about"><i class="fa-solid fa-info-circle"></i> About</a>
+            <a href="#products"><i class="fa-solid fa-box-open"></i> Products</a>
+            <a href="#process"><i class="fa-solid fa-cogs"></i> How we work</a>
+            <a href="#shipping"><i class="fa-solid fa-truck"></i> Shipping</a>
+            <a href="#contact"><i class="fa-solid fa-envelope"></i> Contact</a>
+        </div>
+    </div>
+</nav>
+
+<!-- Home -->
+<section id="home" class="section" style="background-image:url('/images/home-bg.png')">
+    <div class="overlay" data-aos="fade-up">
+        <h2>Premium Handcrafted Products — Straight From Indian [BIHAR] Karigars</h2>
+        <p>Beautiful, long-lasting, and affordable items for your home and festivals.</p>
+        <p>At Munnic, we bring you high-quality handmade products created by skilled Indian artisans.<br>
+            No middlemen. No fake quality.<br>
+            Just honest products packed with love and delivered to your home.</p>
+        <ul>
+            <li>Direct From Karigars – Pure handmade work, not cheap factory items.</li>
+            <li>Premium Quality – Long life, clean finishing, value for money.</li>
+            <li>Pocket-Friendly – Best prices for Indian families.</li>
+            <li>Fast Shipping – Orders dispatched in 24–48 hours.</li>
+            <li>Easy Replacement – Damaged product? We replace it instantly.</li>
+        </ul>
+        <h3>Top Categories</h3>
+        <ul>
+            <li>Puja Decorations</li>
+            <li>Torans & Garlands</li>
+            <li>Home Décor</li>
+            <li>Festival Kits</li>
+            <li>Gift Packs</li>
+        </ul>
+        <p><strong>10,000+ Happy Customers | Pan-India Delivery | COD Available</strong></p>
+        <a href="#products" class="btn">Explore Products</a>
+    </div>
+</section>
+
+<!-- About -->
+<section id="about" class="section" style="background-image:url('/images/picture2.jpg')">
+    <div class="overlay" data-aos="fade-right">
+        <h2>About Us</h2>
+        <p><strong>Who We Are:</strong> Munnic is a small Indian brand built with one goal — give customers good-quality handmade products at fair prices.</p>
+        <p>We work directly with local artisans who put their heart into every item. Every product goes through quality checks before reaching your hands.</p>
+        <p><strong>Our Mission:</strong> To bring real Indian handcrafted products to every home in a simple and affordable way.</p>    <p><strong>Our Vision:</strong> To support local artisans, make festivals brighter, and build a trusted brand loved by Indian families.</p>
+        <p><strong>Why Munnic Is Different:</strong> No middlemen, Honest pricing, Quality checks, Safe packaging, Friendly support.</p>
+
+        <!-- Modern Swiper Slider -->
+        <div class="swiper mySwiper">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide"><img src="/images/picture2.jpg" alt="Karigars at work"></div>
+                <div class="swiper-slide"><img src="/images/picture3.jpg" alt="Handmade products"></div>
+                <div class="swiper-slide"><img src="/images/picture4.jpg" alt="Festival décor"></div>
+                <div class="swiper-slide"><img src="/images/picture5.png" alt="Packaging process"></div>
+                <div class="swiper-slide"><img src="/images/picture6.png" alt="Packaging process"></div>
+                <div class="swiper-slide"><img src="/images/picture7.jpg" alt="Packaging process"></div>
+                <div class="swiper-slide"><img src="/images/picture8.png" alt="Packaging process"></div>
+                <div class="swiper-slide"><img src="/images/picture9.png" alt="Packaging process"></div>
+                <div class="swiper-slide"><img src="/images/picture10.png" alt="Festival joy"></div>
+            </div>
+            <!-- Pagination dots -->
+            <div class="swiper-pagination"></div>
+            <!-- Navigation arrows -->
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+        </div>
+    </div>
+</section>
+
+<!-- Products -->
+<section id="products" class="section" style="background-image:url('/images/products-bg.png')">
+    <div class="overlay" data-aos="zoom-in">
+        <h2>Products</h2>
+        <p>We offer daily-use and festive products that add beauty to your home:</p>
+        <div style="display:flex; flex-wrap:wrap; justify-content:center;">
+            <div class="card">
+                <i class="fa-solid fa-candle"></i>
+                <h3>Puja Items</h3>
+                <ul style="list-style:none; padding:0;">
+                    <li>Artificial marigold garlands</li>
+                    <li>Torans</li>
+                    <li>Diyas</li>
+                    <li>Pooja thalis</li>
+                    <li>Mandir décor</li>
+                </ul>
+            </div>
+            <div class="card">
+                <i class="fa-solid fa-cube"></i>
+                <h3>Home Décor</h3>
+                <ul style="list-style:none; padding:0;">
+                    <li>Door hangings</li>
+                    <li>Wall décor</li>
+                    <li>Decorative sets</li>
+                    <li>Festival decoration kits</li>
+                </ul>
+            </div>
+            <div class="card">
+                <i class="fa-solid fa-gift"></i>
+                <h3>Gift Packs</h3>
+                <p>Perfect gifts for Diwali, housewarming, and festive occasions.</p>
+            </div>
+        </div>
+        <p><strong>Quality Promise:</strong> Before dispatch, every product is checked for strength, finish, clean look, and proper packaging. If it’s not perfect, we don’t sell it. Simple.</p>
+    </div>
+</section>
+
+<!-- Process -->
+<section id="process" class="section" style="background-image:url('/images/products-bg.png')">
+    <div class="overlay" data-aos="fade-up">
+        <h2>How We Work</h2>
+        <div class="timeline">
+            <div class="timeline-item left"><p>We Select Useful Products — Only items that are in demand and actually useful.</p></div>
+            <div class="timeline-item right"><p>We Work Directly With Karigars — Better quality → better price → no middlemen.</p></div>
+            <div class="timeline-item left"><p>We Check Every Item — Durability, finishing, packaging — everything.</p></div>
+            <div class="timeline-item right"><p>We Pack With Care — Strong, safe, and secure packaging to avoid damage.</p></div>
+            <div class="timeline-item left"><p>Fast Shipping — Orders shipped within 24–48 hours across India.</p></div>
+            <div class="timeline-item right"><p>Simple Support — Any issue? We replace immediately. No long process.</p></div>
+        </div>
+    </div>
+</section>
+
+<!-- Shipping -->
+<section id="shipping" class="section" style="background-image:url('/images/shipping-bg.png')">
+    <div class="overlay" data-aos="fade-left">
+        <h2>Shipping & Returns</h2>
+        <div style="display:flex; flex-wrap:wrap; justify-content:center; gap:30px;">
+            <div class="card"><i class="fa-solid fa-truck"></i><h3>Shipping</h3><p>Pan-India delivery, safe packaging, COD available.</p></div>
+            <div class="card"><i class="fa-solid fa-clock"></i><h3>Delivery Time</h3><p>Metro: 3–5 days<br>Tier 2/3: 4–7 days<br>Remote: 7–10 days</p></div>
+            <div class="card"><i class="fa-solid fa-rotate"></i><h3>Easy Replacement</h3><p>If your product arrives damaged: Send a photo/video within 48 hours → We replace it instantly.<br>No questions. No headache.</p></div>
+        </div>
+    </div>
+</section>
+
+<!-- Contact -->
+<section id="contact" class="section" style="background-image:url('/images/contact-bg.png')">
+    <div class="overlay" data-aos="zoom-in">
+        <h2>Contact Us</h2>
+        <form style="display:flex; flex-direction:column; gap:16px; max-width:500px; margin:auto;"
+              action="/contact/sendmail" method="post">
+
+            <input type="text" name="name" placeholder="Your Name" required
+                   style="padding:14px; border-radius:10px; border:none;">
+
+            <input type="email" name="email" placeholder="Your Email" required
+                   style="padding:14px; border-radius:10px; border:none;">
+
+            <textarea name="message" placeholder="Your Message" rows="4" required
+                      style="padding:14px; border-radius:10px; border:none;"></textarea>
+
+            <button type="submit" class="btn ">Send Message</button>
+        </form>
+
+        <!-- Contact Info -->
+        <p style="margin-top:20px;">📞 Phone: +91 7562057250</p>
+        <p>📧 Email: munnic102@gmail.com</p>
+        <p>🕒 Timing: 10 AM – 6 PM (Mon–Sat)</p>
+        <p>
+            Instagram: <a href="https://instagram.com/themunnic" target="_blank" style="color:var(--accent2)">themunnic</a> |
+            Facebook: <a href="https://facebook.com/Munnicmart" target="_blank" style="color:var(--accent2)">Munnicmart</a>
+        </p>
+        <p>Address: (Your Warehouse/Office)</p>
+    </div>
+</section>
+
+
+<!-- Footer -->
+<footer>
+    <p>© <span id="year"></span> Munnic — Premium Handcrafted Products</p>
+    <p>Real Handmade. Real Quality. Real India. | Decor That Brings Your Home Alive. | Handmade With Love, Delivered With Trust.</p>
+    <!--<div style="margin-top:10px;">
+        <a href="#about" style="color:var(&#45;&#45;accent2); margin:0 10px;">About Us</a>
+        <a href="#" style="color:var(&#45;&#45;accent2); margin:0 10px;">Track Order</a>
+        <a href="#shipping" style="color:var(&#45;&#45;accent2); margin:0 10px;">Shipping Policy</a>
+        <a href="#shipping" style="color:var(&#45;&#45;accent2); margin:0 10px;">Return Policy</a>
+        <a href="#" style="color:var(&#45;&#45;accent2); margin:0 10px;">Terms & Conditions</a>
+        <a href="#contact" style="color:var(&#45;&#45;accent2); margin:0 10px;">Contact</a>
+    </div>-->
+</footer>
+
+<!-- Scripts -->
+<script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script>
+    // Footer year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Scroll animations
+    AOS.init({duration:1000, once:true});
+
+    // Scroll-spy for active nav link
+    const sections=document.querySelectorAll('section');
+    const navLinks=document.querySelectorAll('#navLinks a');
+    const spy=new IntersectionObserver(entries=>{
+        entries.forEach(entry=>{
+            if(entry.isIntersecting){
+                navLinks.forEach(a=>a.classList.toggle('active', a.getAttribute('href')==='#'+entry.target.id));
+            }
+        });
+    },{threshold:.6});
+    sections.forEach(sec=>spy.observe(sec));
+
+    // Contact form simple alert
+    document.querySelector('form').addEventListener('submit', e=>{
+
+        alert('Thank you for contacting Munnic! We will reply soon.');
+        e.target.reset();
+    });
+
+    // Swiper slider initialization
+    var swiper = new Swiper(".mySwiper", {
+        loop: true,
+        autoplay: {
+            delay: 3000,
+            disableOnInteraction: false,
+        },
+        pagination: {
+            el: ".swiper-pagination",
+            clickable: true,
+        },
+        navigation: {
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev",
+        },
+        effect: "fade",
+        speed: 800
+    });
+</script>
+</body>
+</html>
