@@ -1,15 +1,11 @@
-# Use official OpenJDK image as base
-FROM eclipse-temurin:17-jdk
-
-
-# Set working directory
+# Stage 1: Build
+FROM maven:3.9.6-eclipse-temurin-17 AS build
 WORKDIR /app
+COPY . .
+RUN mvn clean package -DskipTests
 
-# Copy the JAR file built by Maven into the container
-COPY target/PVT-0.0.1-SNAPSHOT.jar app.jar
-
-# Expose the port (Render will override with $PORT)
-EXPOSE 8080
-
-# Run the JAR
+# Stage 2: Run
+FROM eclipse-temurin:17-jdk-jammy
+WORKDIR /app
+COPY --from=build /app/target/PVT-0.0.1-SNAPSHOT.jar app.jar
 ENTRYPOINT ["java","-jar","app.jar"]
