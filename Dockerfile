@@ -5,7 +5,7 @@ FROM openjdk:17-jdk-slim
 WORKDIR /app
 
 # Copy the JAR file built by Maven into the container
-COPY target/myapp.jar app.jar
+COPY target/PVT-0.0.1-SNAPSHOT.jar app.jar
 
 # Expose the port (Render will override with $PORT)
 EXPOSE 8080
